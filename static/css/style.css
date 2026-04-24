@@ -1,0 +1,568 @@
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+/* ================= BODY ================= */
+body{
+    background: linear-gradient(to right,#eef2f3,#dfe9f3);
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 40px;
+    background:white;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+/* LOGO */
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    text-decoration:none;   /* ✅ remove underline */
+    color:black;            /* ✅ keep color */
+}
+
+.logo:hover{
+    text-decoration:none;   /* ✅ no underline on hover */
+    color:black;
+}
+
+.logo span{
+    color:orange;
+}
+
+/* SEARCH */
+.search-box{
+    width:40%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* RIGHT SECTION */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* LINKS */
+.nav-right a{
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+
+.nav-right a:hover{
+    color:green;
+}
+
+/* USER */
+.user-name{
+    font-weight:bold;
+}
+
+/* ================= CART ================= */
+.cart-container{
+    position:relative;
+}
+
+/* CART BUTTON */
+.cart-box{
+    background:#ff6f00;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* CART POPUP */
+.cart-popup{
+    display:none;
+    position:absolute;
+    top:45px;
+    right:0;
+    width:230px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    animation:fadeIn 0.2s ease;
+}
+
+.cart-popup.show{
+    display:block;
+}
+
+.cart-popup p{
+    margin-bottom:10px;
+}
+
+.cart-popup a{
+    display:block;
+    text-align:center;
+    background:green;
+    color:white;
+    padding:8px;
+    border-radius:5px;
+    text-decoration:none;
+    margin-bottom:8px;
+}
+
+.cart-popup form{
+    margin-top:5px;
+}
+
+.cart-popup .btn{
+    width:100%;
+    padding:8px;
+    font-size:14px;
+}
+
+/* POPUP ANIMATION */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= PRODUCTS ================= */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+    padding:40px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.card img{
+    width:130px;
+    height:130px;
+    object-fit:contain;
+}
+
+/* TITLE */
+.card h3{
+    margin-top:10px;
+}
+
+/* PRICE */
+.card p{
+    margin:10px 0;
+    font-weight:bold;
+}
+
+/* CART QTY */
+.cart-qty{
+    font-size:14px;
+    color:#555;
+}
+
+/* ================= BUTTON GROUP ================= */
+.btn-group{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+}
+
+.btn-group form{
+    flex:1;
+}
+
+/* ================= BUTTON ================= */
+.btn{
+    width:100%;
+    background:green;
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#066d24;
+}
+
+/* REMOVE BUTTON */
+.btn.red{
+    background:#e53935;
+}
+
+.btn.red:hover{
+    background:#c62828;
+}
+
+/* ================= QTY INPUT (INDEX PAGE) ================= */
+.qty-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.qty-box button{
+    width:30px;
+    height:30px;
+    border:none;
+    background:#ddd;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.qty-box input{
+    width:50px;
+    text-align:center;
+    padding:5px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
+/* ================= CART PAGE ================= */
+
+.cart-container-page{
+    width:80%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cart-container-page h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:20px;
+}
+
+table th, table td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+table th{
+    background:#f5f5f5;
+}
+
+/* TOTAL BOX */
+.total-box{
+    text-align:right;
+    font-size:20px;
+    margin-top:10px;
+}
+
+/* CHECKOUT BUTTON */
+.checkout-btn{
+    display:block;
+    width:250px;
+    margin:20px auto;
+    text-align:center;
+    background:green;
+    color:white;
+    padding:12px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.checkout-btn:hover{
+    background:#066d24;
+}
+
+/* ================= CART QTY CONTROLS ================= */
+
+.qty-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.qty-btn{
+    width:30px;
+    height:30px;
+    border:none;
+    background:#ddd;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.qty-btn:hover{
+    background:#bbb;
+}
+
+.qty-number{
+    font-weight:bold;
+    font-size:16px;
+}
+
+/* ================= AUTH ================= */
+.auth-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.auth-card{
+    background:white;
+    padding:40px;
+    width:350px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.auth-card h2{
+    margin-bottom:20px;
+}
+
+.auth-card input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.auth-card button{
+    width:100%;
+    padding:12px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.auth-links{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+.auth-links a{
+    text-decoration:none;
+    color:#007bff;
+}
+
+.error{
+    color:red;
+    margin-top:10px;
+}
+
+.success{
+    color:green;
+    margin-top:10px;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+    text-align:center;
+    padding:15px;
+    background:#222;
+    color:white;
+    margin-top:30px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .nav-right{
+        flex-direction:column;
+    }
+}
+
+/* ================= PRODUCT IMAGE + NAME ================= */
+.product-cell{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.product-cell img{
+    width:50px;
+    height:50px;
+    object-fit:cover;
+    border-radius:6px;
+    border:1px solid #eee;
+}
+
+/* ================= PROMO BOX (TOP RIGHT) ================= */
+
+.promo-box label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:5px;
+}
+
+/* PROMO FORM */
+.promo-box form{
+    display:flex;
+    gap:8px;
+}
+
+/* INPUT */
+.promo-box input{
+    flex:1;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+/* SMALL APPLY BUTTON */
+.promo-btn{
+    padding:8px 12px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.promo-btn:hover{
+    background:#066d24;
+}
+
+/* PROMO BOTTOM RIGHT */
+.promo-wrapper{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:15px;
+}
+
+.promo-box{
+    width:280px;
+}
+
+/* ================= CHECKOUT ================= */
+
+.checkout-box{
+    width:400px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.checkout-box h2{
+    margin-bottom:20px;
+}
+
+/* SELECT */
+.checkout-box select{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* CHECKBOX */
+.checkbox{
+    display:block;
+    margin-top:15px;
+}
+
+/* BUTTON */
+.checkout-box .btn{
+    margin-top:15px;
+    width:100%;
+}
+
+/* ERROR */
+.error{
+    color:red;
+    margin-top:10px;
+}
+
+/* ================= SUCCESS PAGE ================= */
+
+.success-box{
+    width:400px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.success-box h1{
+    color:green;
+    margin-bottom:15px;
+}
+
+.success-box p{
+    margin-bottom:20px;
+    color:#555;
+}
+
+.success-box .btn{
+    display:inline-block;
+    padding:10px 20px;
+}

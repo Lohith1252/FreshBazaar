@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="/" class="logo">
+    Fresh<span>Bazaar</span>
+    </a>
+    <a href="/">⬅ Back to Home</a>
+</header>
+
+<div class="cart-container-page">
+
+<h2>Your Cart</h2>
+
+{% if items %}
+
+<table>
+
+<tr>
+<th>Product</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Total</th>
+<th>Remove</th>
+</tr>
+
+{% for i in items %}
+<tr>
+
+<td class="product-cell">
+    <img src="{{ url_for('static', filename='images/' + i.p.img) }}">
+    <span>{{ i.p.name }}</span>
+</td>
+
+<td>
+    <div class="qty-controls">
+
+        <form method="POST" action="/decrease">
+            <input type="hidden" name="id" value="{{ i.p.id }}">
+            <button class="qty-btn">-</button>
+        </form>
+
+        <span class="qty-number">{{ i.qty }}</span>
+
+        <form method="POST" action="/add">
+            <input type="hidden" name="id" value="{{ i.p.id }}">
+            <button class="qty-btn">+</button>
+        </form>
+
+    </div>
+</td>
+
+<td>₹{{ i.p.price }}</td>
+<td>₹{{ i.subtotal }}</td>
+
+<td>
+    <form method="POST" action="/remove">
+        <input type="hidden" name="id" value="{{ i.p.id }}">
+        <button class="btn red">Remove</button>
+    </form>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+
+<!-- 🔥 PROMO MOVED HERE (BOTTOM RIGHT) -->
+<div class="promo-wrapper">
+
+    <div class="promo-box">
+        <label>Enter Promo Code</label>
+        <form method="POST" action="/apply_promo">
+            <input name="code" placeholder="e.g. SAVE25">
+            <button class="promo-btn">Apply</button>
+        </form>
+    </div>
+
+</div>
+
+
+<!-- TOTAL -->
+<div class="total-box">
+
+<p>Total: ₹{{ total }}</p>
+
+{% if discount > 0 %}
+<p style="color:green;">25% Discount Applied</p>
+<p><strong>Final Total: ₹{{ final_total }}</strong></p>
+{% else %}
+<p><strong>Final Total: ₹{{ total }}</strong></p>
+{% endif %}
+
+</div>
+
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="/checkout" class="checkout-btn">Proceed to Checkout</a>
+
+    <form method="POST" action="/clear_cart" style="margin-top:10px;">
+        <button class="btn red">Clear Cart</button>
+    </form>
+</div>
+
+{% else %}
+<p style="text-align:center; font-size:18px;">
+    Your cart is empty 🛒
+</p>
+{% endif %}
+
+</div>
+
+</body>
+</html>

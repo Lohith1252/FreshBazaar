@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBazaar</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- JS -->
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+
+    <a href="/" class="logo">Fresh<span>Bazaar</span></a>
+
+    <input id="search" class="search-box" placeholder="Search vegetables...">
+
+    <div class="nav-right">
+
+        {% if user %}
+            <span class="user-name">👤 {{ user }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+        {% endif %}
+
+        <!-- CART -->
+        <div class="cart-container">
+
+            <div class="cart-box" onclick="toggleCart()">
+                🛒 {{ total_items }} | ₹{{ total_price }}
+            </div>
+
+            <!-- CART POPUP -->
+            <div id="cartPopup" class="cart-popup">
+                <p><b>Your Cart</b></p>
+                <p>Total Items: {{ total_items }}</p>
+                <p>Total Price: ₹{{ total_price }}</p>
+
+                <a href="/cart">Go to Cart</a>
+
+                <!-- CLEAR ALL BUTTON -->
+                <form method="POST" action="/clear_cart">
+                    <button type="submit" class="btn red" style="margin-top:10px;">
+                        Clear All
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= PRODUCTS ================= -->
+<div class="products">
+
+{% for p in products %}
+<div class="card">
+
+    <img src="{{ url_for('static', filename='images/' + p.img) }}" alt="{{ p.name }}">
+
+    <h3>{{ p.name }}</h3>
+
+    <p>₹ {{ p.price }}</p>
+
+    <!-- SHOW CURRENT QTY -->
+    <p class="cart-qty">
+        In Cart: {{ cart.get(p.id|string, 0) }}
+    </p>
+
+    <!-- BUTTON GROUP -->
+    <div class="btn-group">
+
+        <!-- ADD -->
+        <form method="POST" action="/add">
+            <input type="hidden" name="id" value="{{ p.id }}">
+            <button type="submit" class="btn">
+                ADD
+            </button>
+        </form>
+
+        <!-- REMOVE -->
+        <form method="POST" action="/decrease">
+            <input type="hidden" name="id" value="{{ p.id }}">
+            <button type="submit" class="btn red">
+                −
+            </button>
+        </form>
+
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>© 2026 FreshBazaar. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<h2 class="center">Place Order</h2>
+{% if error %}<p class="error center">{{ error }}</p>{% endif %}
+<form method="POST" class="center">
+<select name="country">
+<option>India</option>
+<option>USA</option>
+</select>
+<br><br>
+<input type="checkbox" name="agree"> Accept Terms
+<br><br>
+<button class="add-btn">Place Order</button>
+</form>

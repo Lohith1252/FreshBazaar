@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+
+    <!-- CLICKABLE LOGO -->
+    <a href="/" class="logo">
+        Fresh<span>Bazaar</span>
+    </a>
+
+    <a href="/cart">⬅ Back to Cart</a>
+
+</header>
+
+
+<!-- ================= CHECKOUT ================= -->
+<div class="checkout-box">
+
+<h2>Checkout</h2>
+
+<form method="POST" action="/place_order">
+
+<!-- COUNTRY -->
+<label>Select Country</label>
+
+<select name="country" required>
+    <option value="">Select Country</option>
+
+    {% for c in countries %}
+        <option value="{{ c }}" {% if c == "India" %}selected{% endif %}>
+            {{ c }}
+        </option>
+    {% endfor %}
+
+</select>
+
+<br><br>
+
+<!-- TERMS -->
+<label class="checkbox">
+    <input type="checkbox" name="agree"> Agree Terms & Conditions
+</label>
+
+<!-- ERROR -->
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+<!-- BUTTON -->
+<button class="btn">Place Order</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
